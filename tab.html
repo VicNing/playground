@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body,
+        ul,
+        li,
+        div {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .clearfix::before,
+        .clearfix::after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix::after {
+            clear: both;
+        }
+
+        .container {
+            width: 1024px;
+            margin: 0 auto;
+        }
+
+        .container .header ul li {
+            float: left;
+            width: 20%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .container .header ul .select:nth-child(1) {
+            background-color: red;
+        }
+
+        .container .header ul .select:nth-child(2) {
+            background-color: orange;
+        }
+
+        .container .header ul .select:nth-child(3) {
+            background-color: yellow;
+        }
+
+        .container .header ul .select:nth-child(4) {
+            background-color: green;
+        }
+
+        .container .header ul .select:nth-child(5) {
+            background-color: cyan;
+        }
+
+        .container .content li {
+            height: 300px;
+            display: none;
+        }
+
+        .container .content ul .select {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <ul class="clearfix">
+                <li>RED</li>
+                <li>ORANGE</li>
+                <li>YELLOW</li>
+                <li>GREEN</li>
+                <li>CYAN</li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul class="clearfix">
+                <li>RED</li>
+                <li>ORANGE</li>
+                <li>YELLOW</li>
+                <li>GREEN</li>
+                <li>CYAN</li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        let lis = document.querySelectorAll('.header>ul>li');
+        let contents = document.querySelectorAll('.content>ul>li');
+        let colorArr = ['red', 'orange', 'yellow', 'green', 'cyan'];
+        lis.forEach(function(li, index, array) {
+            li.addEventListener('click', function() {
+                for (let i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                    contents[i].className = '';
+                }
+                li.className = 'select';
+                contents[index].className = 'select';
+                contents[index].style.backgroundColor = colorArr[index];
+            });
+        });
+    </script>
+</body>
+</html>

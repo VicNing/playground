@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // function ArrLike() {
+        //     let o = new Array();
+        //     o.push.apply(o,arguments);
+        //     o.getProperty = function() {
+        //         return o.join(':');
+        //     }
+        //     return o;
+        // }
+        //
+        // let a = new ArrLike('ning',18,'haha');
+        // console.log(a.getProperty());
+        // console.log(a);
+        function Super(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Super.prototype = {
+            getName: function() {
+                return this.name;
+            }
+        }
+
+        function inherit(sup, sub) {
+            let proto = Object(sup.prototype);
+            proto.constructor = sub;
+            sub.prototype = proto;
+        }
+
+        function Sub(name, age, gender) {
+            Super.call(this, name, age);
+            this.gender = gender;
+        }
+
+        inherit(Super, Sub);
+
+        let a = new Sub('ning', 18, 'male');
+        let b = new Sub('ming', 20, 'female');
+        console.log(a);
+        console.log(b);
+        console.log(Super.prototype.isPrototypeOf(a));
+        console.log(Sub.prototype.isPrototypeOf(a));
+        console.log(Object.prototype.isPrototypeOf(a));
+        console.log(a instanceof Super);
+        console.log(a instanceof Sub);
+        console.log(a instanceof Object);
+
+    </script>
+</body>
+</html>
